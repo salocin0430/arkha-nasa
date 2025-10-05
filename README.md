@@ -118,7 +118,7 @@ Todos los modelos 3D se encuentran en la carpeta `public/models/`:
 
 ```
 public/models/
-├── modules/                              # Módulos ARKHA (25+ archivos)
+├── modules/                              # Módulos ARKHA (27 archivos)
 │   ├── ARKHA_base_L1_V1.glb             # Módulo base
 │   ├── ARKHA_PowerCore_L1_V1.glb        # Núcleo de energía
 │   ├── ARKHA_AccessCore_L1_V1.glb       # Núcleo de acceso
@@ -134,6 +134,28 @@ public/models/
     ├── SRF_MOON2.glb                    # Superficie lunar (variante)
     └── Apollo_14.glb                    # Sitio Apollo 14
 ```
+
+#### Catálogo de Módulos ARKHA
+
+El sistema utiliza 27 módulos especializados organizados por categorías:
+
+| Categoría | Módulos | Descripción |
+|-----------|---------|-------------|
+| **Base** | Base L1 | Estructura octagonal fundacional |
+| **Energía** | PowerCore L1 | Centro de energía con baterías y control térmico |
+| **Acceso** | AccessCore L1, TransCore L2 | Airlock, EVA, escaleras y ascensores |
+| **Circulación** | Circulación L1 | Corredores de enlace entre módulos |
+| **Laboratorios** | Lab L2, LabTri L2 | Bio Lab, Physical Lab, Geo Lab |
+| **Hábitat** | SleepWard L2/Tri, Recreation L1/Tri | Dormitorios y áreas de descanso |
+| **Servicios** | Sanitary L2/Tri, MealPrep L3/Tri | Baños, cocina y preparación de alimentos |
+| **Operaciones** | GalleyComputer L3/Tri, MedBay L3/Tri | Control central y área médica |
+| **Soporte** | Systems L2/Tri, Storage L2/Tri | HVAC, comunicaciones y almacenamiento |
+| **Vida** | Huerta L1/Tri, Exercise L2/Tri | Invernaderos y gimnasio |
+
+**Nomenclatura:**
+- `L1`, `L2`, `L3`: Nivel del módulo (1=Base, 2=Medio, 3=Superior)
+- `Tri`: Versión expandida (triple tamaño)
+- `V1`: Versión del diseño
 
 #### ¿Por qué usamos el formato GLB?
 
@@ -167,6 +189,185 @@ public/models/
    const { scene } = useGLTF('/models/modules/ARKHA_Lab_L2_V1.glb');
    ```
 
+### ⚙️ Archivo de Configuración de Módulos
+
+El archivo `public/configs/arkha_modules.json` es el **corazón del sistema**. Define todos los módulos, sus propiedades y cómo se renderizan en el visualizador 3D.
+
+#### Estructura del Archivo
+
+```json
+{
+  "id": "arkha_modules",
+  "name": "ARKHA Space Modules",
+  "defaultTime": 12,
+  "cameraPosition": [0, 20, 40],
+  "cameraTarget": [0, 0, 0],
+  "baseModel": { ... },
+  "modules": [ ... ],
+  "lighting": { ... },
+  "environment": { ... }
+}
+```
+
+#### Configuración Global
+
+| Propiedad | Tipo | Descripción |
+|-----------|------|-------------|
+| `cameraPosition` | `[x, y, z]` | Posición inicial de la cámara en el espacio 3D |
+| `cameraTarget` | `[x, y, z]` | Punto hacia donde mira la cámara |
+| `defaultTime` | `number` | Hora del día para iluminación (0-24) |
+| `floorMaterial` | `string` | Material del suelo (marble, concrete, etc.) |
+
+#### Configuración de Módulos
+
+Cada módulo en el array `modules` tiene la siguiente estructura:
+
+```json
+{
+  "id": "base_l1_v1",
+  "name": "Structural base - Octagon",
+  "code": "ARKHA_base_L1_V1",
+  "item": "001",
+  "type": "Base Module",
+  "description": "Octagonal foundational structure...",
+  "area": "9.21 m²",
+  "volume": "36.15 m³",
+  "position": [0, 0, 0],
+  "rotation": [0, 0, 0],
+  "scale": [1, 1, 1],
+  "typeModel": "glb",
+  "path": "/models/modules/ARKHA_base_L1_V1.glb",
+  "interactive": true,
+  "hidden": false,
+  "lighting": {
+    "enabled": true,
+    "intensity": 110,
+    "angle": 65,
+    "color": "0xffffff",
+    "position": [0, 2.8, 0],
+    "type": "point"
+  }
+}
+```
+
+#### Propiedades Clave
+
+**Identificación:**
+- `id`: Identificador único del módulo
+- `code`: Código ARKHA oficial
+- `item`: Número de ítem en el catálogo
+- `type`: Categoría del módulo
+
+**Propiedades Físicas:**
+- `area`: Área útil en metros cuadrados
+- `volume`: Volumen habitable en metros cúbicos
+- `description`: Descripción funcional del módulo
+
+**Transformación 3D:**
+- `position`: Coordenadas [x, y, z] en el espacio
+- `rotation`: Rotación [x, y, z] en radianes
+- `scale`: Escala [x, y, z] (1 = tamaño original)
+
+**Renderizado:**
+- `path`: Ruta al archivo GLB del modelo
+- `interactive`: Si el usuario puede seleccionarlo/moverlo
+- `hidden`: Si está oculto por defecto
+- `typeModel`: Formato del modelo (glb, obj, etc.)
+
+**Iluminación por Módulo:**
+- `enabled`: Activar luz individual
+- `intensity`: Intensidad lumínica (0-200)
+- `type`: Tipo de luz (point, spot, directional)
+- `color`: Color en formato hexadecimal
+- `position`: Posición relativa al módulo
+
+#### Iluminación Global
+
+```json
+"lighting": {
+  "ambient": {
+    "color": "0x404040",
+    "intensity": 1.5
+  },
+  "directional": {
+    "color": "0xffffff",
+    "intensity": 2.5,
+    "position": [15, 20, 10],
+    "castShadow": true
+  }
+}
+```
+
+- **Ambient Light**: Iluminación base que afecta toda la escena
+- **Directional Light**: Luz direccional (simula el sol)
+
+#### Entorno
+
+```json
+"environment": {
+  "skyColor": "0x000000",
+  "groundColor": "0x000000",
+  "fogEnabled": false
+}
+```
+
+#### Ejemplo de Uso
+
+Para agregar un nuevo módulo al catálogo:
+
+1. **Agregar el modelo GLB** a `public/models/modules/`
+2. **Crear entrada en el JSON**:
+
+```json
+{
+  "id": "nuevo_modulo_v1",
+  "name": "Nuevo Módulo Experimental",
+  "code": "ARKHA_NewModule_L2_V1",
+  "item": "028",
+  "type": "Experimental Module",
+  "description": "Descripción del nuevo módulo",
+  "area": "12.5 m²",
+  "volume": "35.0 m³",
+  "position": [0, 0, 0],
+  "rotation": [0, 0, 0],
+  "scale": [1, 1, 1],
+  "typeModel": "glb",
+  "path": "/models/modules/ARKHA_NewModule_L2_V1.glb",
+  "interactive": true,
+  "hidden": false,
+  "lighting": {
+    "enabled": true,
+    "intensity": 110,
+    "angle": 65,
+    "color": "0xffffff",
+    "position": [0, 2.8, 0],
+    "type": "point"
+  }
+}
+```
+
+3. **Reiniciar el servidor** para cargar los cambios
+
+#### Validación del Archivo
+
+El archivo debe ser JSON válido. Puedes validarlo con:
+
+```bash
+# Usando Node.js
+node -e "console.log(JSON.parse(require('fs').readFileSync('public/configs/arkha_modules.json')))"
+
+# O usando una herramienta online: https://jsonlint.com/
+```
+
+#### Ubicación de Archivos de Configuración
+
+```
+public/configs/
+├── arkha_modules.json      # Catálogo principal de módulos (27 módulos)
+├── modules_catalog.json    # Catálogo simplificado para UI
+├── mission_example.json    # Ejemplo de configuración de misión
+└── mission_test.json       # Configuración de prueba
+```
 
 ---
 
