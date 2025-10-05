@@ -1,0 +1,94 @@
+{
+    "parameters": {
+      "passengers": 10,
+      "duration": 90,
+      "isScientific": false
+    },
+    "totalModules": 13,
+    "modules": [
+      {
+        "id": "access_core_l1_v1",
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "powercore_l1_v1",
+        "position": [5, 0, 0],
+        "rotation": [0, 1.5708, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "l2_sleepwardbay_v1",
+        "position": [-5, 0, 0],
+        "rotation": [0, -1.5708, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "l2_storagebay_v1",
+        "position": [0, 0, 5],
+        "rotation": [0, 3.14159, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "lab_l2_v1",
+        "position": [0, 0, -5],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "l2_systemsbay_v1",
+        "position": [5, 0, 5],
+        "rotation": [0, 2.35619, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "huerta_l1_v1",
+        "position": [-5, 0, 5],
+        "rotation": [0, -2.35619, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "l3_medbay_v1",
+        "position": [5, 0, -5],
+        "rotation": [0, 0.785398, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "circulacion_l1_v1",
+        "position": [-5, 0, -5],
+        "rotation": [0, -0.785398, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "access_core_l1_v1",
+        "position": [10, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "powercore_l1_v1",
+        "position": [0, 3.10, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "l2_sleepwardbay_v1",
+        "position": [5, 3.10, 0],
+        "rotation": [0, 1.5708, 0],
+        "scale": [1, 1, 1]
+      },
+      {
+        "id": "l2_storagebay_v1",
+        "position": [-5, 3.10, 0],
+        "rotation": [0, -1.5708, 0],
+        "scale": [1, 1, 1]
+      }
+    ],
+    "metadata": {
+      "generatedAt": "2025-01-15T10:30:00Z",
+      "algorithmVersion": "v2.1.0",
+      "estimatedCost": 45000,
+      "currency": "ARKHA"
+    }
+  }

@@ -1,0 +1,82 @@
+{
+  "id": "example",
+  "name": "Misión de Ejemplo ARKHA",
+  "description": "Configuración de ejemplo para demostrar el sistema de módulos ARKHA",
+  "destination": "Marte",
+  "crewSize": 6,
+  "missionDuration": 90,
+  "cameraPosition": [0, 8, 12],
+  "cameraTarget": [0, 0, 0],
+  "modules": [
+    {
+      "id": "access_core_l1_v1",
+      "name": "ARKHA Access Core L1 V1",
+      "type": "access",
+      "description": "Módulo de acceso principal de nivel 1, versión 1",
+      "position": [0, 0, 0],
+      "rotation": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "modelPath": "/models/modules/ARKHA_AccessCore_L1_V1.glb",
+      "interactive": true,
+      "hidden": false,
+      "connectionPoints": [
+        {
+          "id": "north",
+          "position": [0, 0, 2],
+          "type": "horizontal",
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "south",
+          "position": [0, 0, -2],
+          "type": "horizontal",
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "east",
+          "position": [2, 0, 0],
+          "type": "horizontal",
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "west",
+          "position": [-2, 0, 0],
+          "type": "horizontal",
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "top",
+          "position": [0, 2, 0],
+          "type": "vertical",
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        }
+      ],
+      "requirements": {
+        "power": 50,
+        "lifeSupport": 30,
+        "crew": 2
+      },
+      "restrictions": {
+        "cannotBeNear": ["power"],
+        "minDistance": 3
+      }
+    }
+  ],
+  "lighting": {
+    "ambient": {
+      "color": "0x404040",
+      "intensity": 0.4
+    },
+    "directional": {
+      "color": "0xffffff",
+      "intensity": 1.0,
+      "position": [10, 10, 5],
+      "castShadow": true
+    }
+  },
+  "environment": {
+    "skyColor": "0x87ceeb",
+    "groundColor": "0x8b4513",
+    "fogEnabled": false
+  }
+}

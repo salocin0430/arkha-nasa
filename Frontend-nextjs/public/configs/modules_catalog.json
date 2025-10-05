@@ -1,0 +1,81 @@
+{
+  "modules": [
+    {
+      "id": "access_core_l1_v1",
+      "name": "ARKHA Access Core L1 V1",
+      "type": "access",
+      "description": "Módulo de acceso principal de nivel 1, versión 1. Punto de entrada principal para la estación espacial.",
+      "position": [50, 0, 0],
+      "rotation": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "modelPath": "/models/modules/ARKHA_AccessCore_L1_V1.glb",
+      "interactive": true,
+      "hidden": false,
+      "anclajes": [
+        {
+          "id": "anclaje_suelo_01",
+          "tipo": "interconexión_vertical",
+          "radio": 0.5,
+          "posicion": [0, -1.5, 0],
+          "direccion": [0, -1, 0],
+          "arriba": [0, 0, -1],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_techo_01",
+          "tipo": "interconexión_vertical", 
+          "radio": 0.5,
+          "posicion": [0, 1.5, 0],
+          "direccion": [0, 1, 0],
+          "arriba": [0, 0, 1],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_lateral_este",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.5,
+          "posicion": [1.5, 0, 0],
+          "direccion": [1, 0, 0],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_lateral_oeste",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.5,
+          "posicion": [-1.5, 0, 0],
+          "direccion": [-1, 0, 0],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_lateral_norte",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.5,
+          "posicion": [0, 0, 1.5],
+          "direccion": [0, 0, 1],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_lateral_sur",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.5,
+          "posicion": [0, 0, -1.5],
+          "direccion": [0, 0, -1],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        }
+      ],
+      "requirements": {
+        "power": 50,
+        "lifeSupport": 30,
+        "crew": 2
+      },
+      "restrictions": {
+        "cannotBeNear": ["power"],
+        "minDistance": 3
+      }
+    }
+  ]
+}

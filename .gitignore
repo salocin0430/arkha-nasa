@@ -1,0 +1,91 @@
+# ============================================
+# ARKHA NASA - Git Ignore Principal
+# ============================================
+
+# Dependencias
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Entornos virtuales Python
+venv/
+env/
+ENV/
+.venv
+
+# Archivos de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.tmproj
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+.cache/
+
+# Archivos temporales
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Certificados y claves
+*.pem
+*.key
+*.cert
+
+# Backups
+*.bak
+*.backup
+*~

@@ -1,0 +1,192 @@
+{
+  "id": "test",
+  "name": "Misión de Prueba ARKHA",
+  "description": "Misión de prueba para cargar el módulo ARKHA_AccessCore_L1_V1",
+  "destination": "Marte",
+  "crewSize": 4,
+  "missionDuration": 30,
+  "cameraPosition": [0, 8, 12],
+  "cameraTarget": [0, 0, 0],
+  "conexiones": [
+    {
+      "moduloOrigen": "access_core_l1_v1",
+      "anclajeOrigen": "anclaje_D",
+      "moduloDestino": "access_core_l1_v2",
+      "anclajeDestino": "anclaje_D",
+      "nombre": "Conexión D-D"
+    }
+  ],
+  "modules": [
+    {
+      "id": "access_core_l1_v1",
+      "name": "ARKHA Access Core L1 V1 - Módulo 1",
+      "type": "access",
+      "description": "Módulo de acceso principal de nivel 1, versión 1. Punto de entrada principal para la estación espacial.",
+      "position": [0, 0, 0],
+      "rotation": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "modelPath": "/models/modules/ARKHA_AccessCore_L1_V1.glb",
+      "interactive": true,
+      "hidden": false,
+      "anclajes": [
+        {
+          "id": "anclaje_A",
+          "tipo": "interconexión_vertical",
+          "radio": 0.2,
+          "posicion": [0, -2, 0],
+          "direccion": [0, -1, 0],
+          "arriba": [0, 0, 1],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_B",
+          "tipo": "interconexión_vertical",
+          "radio": 0.2,
+          "posicion": [0, 2, 0],
+          "direccion": [0, 1, 0],
+          "arriba": [0, 0, 1],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_C",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [2, 0, 0],
+          "direccion": [1, 0, 0],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_D",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [-2, 0, 0],
+          "direccion": [-1, 0, 0],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_E",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [0, 0, 2],
+          "direccion": [0, 0, 1],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_F",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [0, 0, -2],
+          "direccion": [0, 0, -1],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        }
+      ],
+      "requirements": {
+        "power": 50,
+        "lifeSupport": 30,
+        "crew": 2
+      },
+      "restrictions": {
+        "cannotBeNear": ["power"],
+        "minDistance": 3
+      }
+    },
+    {
+      "id": "access_core_l1_v2",
+      "name": "ARKHA Access Core L1 V1 - Módulo 2",
+      "type": "access",
+      "description": "Segundo módulo para prueba de conexión C-D",
+      "position": [0, 0, 0],
+      "rotation": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "modelPath": "/models/modules/ARKHA_AccessCore_L1_V1.glb",
+      "interactive": true,
+      "hidden": false,
+      "anclajes": [
+        {
+          "id": "anclaje_A",
+          "tipo": "interconexión_vertical",
+          "radio": 0.2,
+          "posicion": [0, -2, 0],
+          "direccion": [0, -1, 0],
+          "arriba": [0, 0, 1],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_B",
+          "tipo": "interconexión_vertical",
+          "radio": 0.2,
+          "posicion": [0, 2, 0],
+          "direccion": [0, 1, 0],
+          "arriba": [0, 0, 1],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_C",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [2, 0, 0],
+          "direccion": [1, 0, 0],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_D",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [-2, 0, 0],
+          "direccion": [-1, 0, 0],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_E",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [0, 0, 2],
+          "direccion": [0, 0, 1],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        },
+        {
+          "id": "anclaje_F",
+          "tipo": "interconexión_horizontal",
+          "radio": 0.2,
+          "posicion": [0, 0, -2],
+          "direccion": [0, 0, -1],
+          "arriba": [0, 1, 0],
+          "compatible": ["habitat", "lab", "storage", "power", "life_support"]
+        }
+      ],
+      "requirements": {
+        "power": 50,
+        "lifeSupport": 30,
+        "crew": 2
+      },
+      "restrictions": {
+        "cannotBeNear": ["power"],
+        "minDistance": 3
+      }
+    }
+  ],
+  "lighting": {
+    "ambient": {
+      "color": "0x404040",
+      "intensity": 0.4
+    },
+    "directional": {
+      "color": "0xffffff",
+      "intensity": 1.0,
+      "position": [10, 10, 5],
+      "castShadow": true
+    }
+  },
+  "environment": {
+    "skyColor": "0x87ceeb",
+    "groundColor": "0x8b4513",
+    "fogEnabled": false
+  }
+}
