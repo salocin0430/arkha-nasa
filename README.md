@@ -2,198 +2,240 @@
 
 **NASA International Space Apps Challenge Project**
 
-ARKHA es una plataforma integral para el diseño y visualización de hábitats espaciales modulares para misiones en la Luna, Marte y el espacio profundo. El proyecto consta de dos aplicaciones principales que trabajan en conjunto:
+ARKHA is a comprehensive platform for designing and visualizing modular space habitats for missions to the Moon, Mars, and deep space. The project consists of two main applications working together:
 
 ---
 
-## 📦 Arquitectura del Proyecto
+## 🛠️ Technologies & Tools Used
+
+### Frontend & 3D Rendering
+- **Next.js 15.5.4** (App Router)
+- **TypeScript 5**
+- **React 19**
+- **Three.js 0.180**
+- **@react-three/fiber**
+- **@react-three/drei**
+- **Tailwind CSS 3.4**
+- **Framer Motion 12**
+
+### Backend & Database
+- **Supabase** (PostgreSQL + Auth + Real-time)
+- **Zustand 5**
+
+### Microservice
+- **Python 3.9+**
+- **FastAPI 0.109**
+- **Uvicorn**
+- **Pydantic 2.5**
+- **NumPy 1.26**
+
+### DevOps & Deployment
+- **Docker**
+- **Docker Compose**
+- **Vercel**
+- **Git**
+- **GitHub**
+
+### 3D Modeling
+- **SketchUp**
+- **Blender**
+- **GLB Format**
+
+### Architecture Patterns
+- **Clean Architecture**
+- **Repository Pattern**
+- **Dependency Injection**
+
+---
+
+## 📦 Project Architecture
 
 ```
 arkha-nasa/
-├── Frontend-nextjs/          # Aplicación web principal (Next.js)
-└── ms-module-manager/        # Microservicio de generación de layouts (Python/FastAPI)
+├── Frontend-nextjs/          # Main web application (Next.js)
+└── ms-module-manager/        # Layout generation microservice (Python/FastAPI)
 ```
 
 ---
 
-## 🌐 Frontend Next.js
+## 🌐 Next.js Frontend
 
-### ¿Qué es?
+### What is it?
 
-Aplicación web interactiva construida con **Next.js 15** que permite a los usuarios diseñar, visualizar y compartir configuraciones de hábitats espaciales modulares en 3D. Incluye autenticación, galería comunitaria, constructor de misiones y visualizador 3D.
+Interactive web application built with **Next.js 15** that allows users to design, visualize, and share modular space habitat configurations in 3D. Features authentication, community gallery, mission builder, and 3D viewer.
 
-### Características Principales
+### Key Features
 
-- 🎨 **Visualizador 3D Interactivo**: Renderizado de módulos espaciales usando Three.js
-- 🏗️ **Constructor de Misiones**: Diseña hábitats personalizados según parámetros de misión
-- 👥 **Galería Comunitaria**: Explora y comparte diseños con otros usuarios
-- 🔐 **Autenticación Completa**: Sistema de usuarios con Supabase Auth
-- 📱 **Responsive Design**: Interfaz optimizada para todos los dispositivos
-- 🌙 **Catálogo de Módulos**: 25+ módulos ARKHA especializados (laboratorios, habitaciones, sistemas, etc.)
+- 🎨 **Interactive 3D Viewer**: Space module rendering using Three.js
+- 🏗️ **Mission Builder**: Design custom habitats based on mission parameters
+- 👥 **Community Gallery**: Explore and share designs with other users
+- 🔐 **Complete Authentication**: User system with Supabase Auth
+- 📱 **Responsive Design**: Interface optimized for all devices
+- 🌙 **Module Catalog**: 27 specialized ARKHA modules (laboratories, living quarters, systems, etc.)
 
-### Stack Tecnológico
+### Tech Stack
 
 - **Framework**: Next.js 15.5.4 (App Router)
-- **Lenguaje**: TypeScript 5
+- **Language**: TypeScript 5
 - **UI**: React 19, Tailwind CSS 3.4, Framer Motion
 - **3D**: Three.js, @react-three/fiber, @react-three/drei
 - **Backend**: Supabase (PostgreSQL + Auth + Real-time)
-- **Estado**: Zustand
-- **Arquitectura**: Clean Architecture (Domain/Application/Infrastructure)
+- **State**: Zustand
+- **Architecture**: Clean Architecture (Domain/Application/Infrastructure)
 
-### Instalación y Despliegue
+### Installation and Deployment
 
-#### Prerrequisitos
+#### Prerequisites
 
-- Node.js 20+ y npm
-- Cuenta de Supabase (para base de datos y autenticación)
+- Node.js 20+ and npm
+- Supabase account (for database and authentication)
 
-#### Pasos de Instalación
+#### Installation Steps
 
 ```bash
-# 1. Navegar al directorio del frontend
+# 1. Navigate to frontend directory
 cd Frontend-nextjs
 
-# 2. Instalar dependencias
+# 2. Install dependencies
 npm install
 
-# 3. Configurar variables de entorno
+# 3. Configure environment variables
 cp env.example .env.local
 
-# Editar .env.local con tus credenciales de Supabase:
-# NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
-# NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima
+# Edit .env.local with your Supabase credentials:
+# NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 ```
 
-#### Ejecutar en Desarrollo
+#### Run in Development
 
 ```bash
 npm run dev
 ```
 
-La aplicación estará disponible en `http://localhost:3000`
+Application will be available at `http://localhost:3000`
 
-#### Construir para Producción
+#### Build for Production
 
 ```bash
 npm run build
 npm start
 ```
 
-### Estructura del Proyecto
+### Project Structure
 
 ```
 Frontend-nextjs/
 ├── src/
-│   ├── app/                    # Páginas y rutas (App Router)
-│   │   ├── page.tsx           # Página principal
-│   │   ├── login/             # Autenticación
-│   │   ├── gallery/           # Galería de misiones
-│   │   ├── mission-builder/   # Constructor de misiones
-│   │   └── profile/           # Perfil de usuario
-│   ├── components/            # Componentes React
-│   │   ├── ModuleViewer3D.tsx # Visualizador 3D principal
+│   ├── app/                    # Pages and routes (App Router)
+│   │   ├── page.tsx           # Main page
+│   │   ├── login/             # Authentication
+│   │   ├── gallery/           # Mission gallery
+│   │   ├── mission-builder/   # Mission builder
+│   │   └── profile/           # User profile
+│   ├── components/            # React components
+│   │   ├── ModuleViewer3D.tsx # Main 3D viewer
 │   │   ├── PersistentNavbar.tsx
-│   │   └── ui/                # Componentes de interfaz
-│   ├── services/              # Lógica de negocio
+│   │   └── ui/                # UI components
+│   ├── services/              # Business logic
 │   │   ├── ModuleConfigService.ts
 │   │   └── MissionLayoutService.ts
-│   ├── hooks/                 # React hooks personalizados
-│   └── infrastructure/        # Integración con Supabase
+│   ├── hooks/                 # Custom React hooks
+│   └── infrastructure/        # Supabase integration
 ├── public/
-│   ├── models/                # Modelos 3D (.glb)
-│   │   ├── modules/           # 25+ módulos ARKHA
+│   ├── models/                # 3D models (.glb)
+│   │   ├── modules/           # 27 ARKHA modules
 │   │   └── extraterrestrial_lands/
-│   └── configs/               # Configuraciones JSON
-│       ├── arkha_modules.json # Catálogo de módulos
+│   └── configs/               # JSON configurations
+│       ├── arkha_modules.json # Module catalog
 │       └── modules_catalog.json
-└── docs/                      # Documentación técnica
+└── docs/                      # Technical documentation
 ```
 
-### 🎨 Modelos 3D - Ubicación y Formato
+### 🎨 3D Models - Location and Format
 
-#### Ubicación de los Modelos
+#### Model Location
 
-Todos los modelos 3D se encuentran en la carpeta `public/models/`:
+All 3D models are located in the `public/models/` folder:
 
 ```
 public/models/
-├── modules/                              # Módulos ARKHA (27 archivos)
-│   ├── ARKHA_base_L1_V1.glb             # Módulo base
-│   ├── ARKHA_PowerCore_L1_V1.glb        # Núcleo de energía
-│   ├── ARKHA_AccessCore_L1_V1.glb       # Núcleo de acceso
-│   ├── ARKHA_Lab_L2_V1.glb              # Laboratorio
-│   ├── ARKHA_LabTri_L2_V1.glb           # Laboratorio triangular
-│   ├── ARKHA_L2_ExerciseBay_V1.glb      # Bahía de ejercicio
-│   ├── ARKHA_L3_MedBay_V1.glb           # Bahía médica
-│   ├── ARKHA_SanitaryBay_L2_V1.glb      # Bahía sanitaria
-│   └── ... (y más módulos especializados)
+├── modules/                              # ARKHA Modules (27 files)
+│   ├── ARKHA_base_L1_V1.glb             # Base module
+│   ├── ARKHA_PowerCore_L1_V1.glb        # Power core
+│   ├── ARKHA_AccessCore_L1_V1.glb       # Access core
+│   ├── ARKHA_Lab_L2_V1.glb              # Laboratory
+│   ├── ARKHA_LabTri_L2_V1.glb           # Triangular laboratory
+│   ├── ARKHA_L2_ExerciseBay_V1.glb      # Exercise bay
+│   ├── ARKHA_L3_MedBay_V1.glb           # Medical bay
+│   ├── ARKHA_SanitaryBay_L2_V1.glb      # Sanitary bay
+│   └── ... (and more specialized modules)
 │
-└── extraterrestrial_lands/               # Terrenos extraterrestres
-    ├── SRF_MOON.glb                     # Superficie lunar
-    ├── SRF_MOON2.glb                    # Superficie lunar (variante)
-    └── Apollo_14.glb                    # Sitio Apollo 14
+└── extraterrestrial_lands/               # Extraterrestrial terrains
+    ├── SRF_MOON.glb                     # Lunar surface
+    ├── SRF_MOON2.glb                    # Lunar surface (variant)
+    └── Apollo_14.glb                    # Apollo 14 site
 ```
 
-#### Catálogo de Módulos ARKHA
+#### ARKHA Module Catalog
 
-El sistema utiliza 27 módulos especializados organizados por categorías:
+The system uses 27 specialized modules organized by categories:
 
-| Categoría | Módulos | Descripción |
-|-----------|---------|-------------|
-| **Base** | Base L1 | Estructura octagonal fundacional |
-| **Energía** | PowerCore L1 | Centro de energía con baterías y control térmico |
-| **Acceso** | AccessCore L1, TransCore L2 | Airlock, EVA, escaleras y ascensores |
-| **Circulación** | Circulación L1 | Corredores de enlace entre módulos |
-| **Laboratorios** | Lab L2, LabTri L2 | Bio Lab, Physical Lab, Geo Lab |
-| **Hábitat** | SleepWard L2/Tri, Recreation L1/Tri | Dormitorios y áreas de descanso |
-| **Servicios** | Sanitary L2/Tri, MealPrep L3/Tri | Baños, cocina y preparación de alimentos |
-| **Operaciones** | GalleyComputer L3/Tri, MedBay L3/Tri | Control central y área médica |
-| **Soporte** | Systems L2/Tri, Storage L2/Tri | HVAC, comunicaciones y almacenamiento |
-| **Vida** | Huerta L1/Tri, Exercise L2/Tri | Invernaderos y gimnasio |
+| Category | Modules | Description |
+|----------|---------|-------------|
+| **Base** | Base L1 | Octagonal foundational structure |
+| **Power** | PowerCore L1 | Energy center with batteries and thermal control |
+| **Access** | AccessCore L1, TransCore L2 | Airlock, EVA, stairs and elevators |
+| **Circulation** | Circulation L1 | Connecting corridors between modules |
+| **Laboratories** | Lab L2, LabTri L2 | Bio Lab, Physical Lab, Geo Lab |
+| **Habitat** | SleepWard L2/Tri, Recreation L1/Tri | Dormitories and rest areas |
+| **Services** | Sanitary L2/Tri, MealPrep L3/Tri | Bathrooms, kitchen and food preparation |
+| **Operations** | GalleyComputer L3/Tri, MedBay L3/Tri | Central control and medical area |
+| **Support** | Systems L2/Tri, Storage L2/Tri | HVAC, communications and storage |
+| **Life** | Huerta L1/Tri, Exercise L2/Tri | Greenhouses and gym |
 
-**Nomenclatura:**
-- `L1`, `L2`, `L3`: Nivel del módulo (1=Base, 2=Medio, 3=Superior)
-- `Tri`: Versión expandida (triple tamaño)
-- `V1`: Versión del diseño
+**Nomenclature:**
+- `L1`, `L2`, `L3`: Module level (1=Base, 2=Middle, 3=Upper)
+- `Tri`: Expanded version (triple size)
+- `V1`: Design version
 
-#### ¿Por qué usamos el formato GLB?
+#### Why do we use GLB format?
 
-**GLB (GL Transmission Format Binary)** es el formato estándar para modelos 3D en la web por las siguientes razones:
+**GLB (GL Transmission Format Binary)** is the standard format for 3D models on the web for the following reasons:
 
-1. **📦 Formato Binario Compacto**
-   - Archivo único que contiene geometría, texturas, materiales y animaciones
-   - Tamaño de archivo reducido (hasta 10x más pequeño que otros formatos)
-   - Carga más rápida en aplicaciones web
+1. **📦 Compact Binary Format**
+   - Single file containing geometry, textures, materials, and animations
+   - Reduced file size (up to 10x smaller than other formats)
+   - Faster loading in web applications
 
-2. **🌐 Estándar de la Industria**
-   - Formato oficial de Khronos Group (creadores de WebGL)
-   - Soportado nativamente por Three.js y React Three Fiber
-   - Compatible con la mayoría de herramientas 3D (Blender, SketchUp, Maya, etc.)
+2. **🌐 Industry Standard**
+   - Official format by Khronos Group (creators of WebGL)
+   - Natively supported by Three.js and React Three Fiber
+   - Compatible with most 3D tools (Blender, SketchUp, Maya, etc.)
 
-3. **⚡ Optimizado para Web**
-   - Diseñado específicamente para transmisión por internet
-   - Carga progresiva y streaming
-   - Bajo consumo de memoria en el navegador
+3. **⚡ Web Optimized**
+   - Designed specifically for internet transmission
+   - Progressive loading and streaming
+   - Low memory consumption in browser
 
-4. **🎯 Todo en Uno**
-   - No requiere archivos externos (texturas, materiales embebidos)
-   - Fácil de gestionar y distribuir
-   - Menos requests HTTP = mejor rendimiento
+4. **🎯 All-in-One**
+   - No external files required (embedded textures and materials)
+   - Easy to manage and distribute
+   - Fewer HTTP requests = better performance
 
-5. **🔧 Fácil Integración**
+5. **🔧 Easy Integration**
    ```typescript
-   // Cargar un modelo GLB en React Three Fiber es simple:
+   // Loading a GLB model in React Three Fiber is simple:
    import { useGLTF } from '@react-three/drei';
    
    const { scene } = useGLTF('/models/modules/ARKHA_Lab_L2_V1.glb');
    ```
 
-### ⚙️ Archivo de Configuración de Módulos
+### ⚙️ Module Configuration File
 
-El archivo `public/configs/arkha_modules.json` es el **corazón del sistema**. Define todos los módulos, sus propiedades y cómo se renderizan en el visualizador 3D.
+The `public/configs/arkha_modules.json` file is the **heart of the system**. It defines all modules, their properties, and how they are rendered in the 3D viewer.
 
-#### Estructura del Archivo
+#### File Structure
 
 ```json
 {
@@ -209,18 +251,18 @@ El archivo `public/configs/arkha_modules.json` es el **corazón del sistema**. D
 }
 ```
 
-#### Configuración Global
+#### Global Configuration
 
-| Propiedad | Tipo | Descripción |
-|-----------|------|-------------|
-| `cameraPosition` | `[x, y, z]` | Posición inicial de la cámara en el espacio 3D |
-| `cameraTarget` | `[x, y, z]` | Punto hacia donde mira la cámara |
-| `defaultTime` | `number` | Hora del día para iluminación (0-24) |
-| `floorMaterial` | `string` | Material del suelo (marble, concrete, etc.) |
+| Property | Type | Description |
+|----------|------|-------------|
+| `cameraPosition` | `[x, y, z]` | Initial camera position in 3D space |
+| `cameraTarget` | `[x, y, z]` | Point where the camera looks |
+| `defaultTime` | `number` | Time of day for lighting (0-24) |
+| `floorMaterial` | `string` | Floor material (marble, concrete, etc.) |
 
-#### Configuración de Módulos
+#### Module Configuration
 
-Cada módulo en el array `modules` tiene la siguiente estructura:
+Each module in the `modules` array has the following structure:
 
 ```json
 {
@@ -250,38 +292,38 @@ Cada módulo en el array `modules` tiene la siguiente estructura:
 }
 ```
 
-#### Propiedades Clave
+#### Key Properties
 
-**Identificación:**
-- `id`: Identificador único del módulo
-- `code`: Código ARKHA oficial
-- `item`: Número de ítem en el catálogo
-- `type`: Categoría del módulo
+**Identification:**
+- `id`: Unique module identifier
+- `code`: Official ARKHA code
+- `item`: Catalog item number
+- `type`: Module category
 
-**Propiedades Físicas:**
-- `area`: Área útil en metros cuadrados
-- `volume`: Volumen habitable en metros cúbicos
-- `description`: Descripción funcional del módulo
+**Physical Properties:**
+- `area`: Usable area in square meters
+- `volume`: Habitable volume in cubic meters
+- `description`: Functional module description
 
-**Transformación 3D:**
-- `position`: Coordenadas [x, y, z] en el espacio
-- `rotation`: Rotación [x, y, z] en radianes
-- `scale`: Escala [x, y, z] (1 = tamaño original)
+**3D Transformation:**
+- `position`: Coordinates [x, y, z] in space
+- `rotation`: Rotation [x, y, z] in radians
+- `scale`: Scale [x, y, z] (1 = original size)
 
-**Renderizado:**
-- `path`: Ruta al archivo GLB del modelo
-- `interactive`: Si el usuario puede seleccionarlo/moverlo
-- `hidden`: Si está oculto por defecto
-- `typeModel`: Formato del modelo (glb, obj, etc.)
+**Rendering:**
+- `path`: Path to GLB model file
+- `interactive`: Whether user can select/move it
+- `hidden`: Whether it's hidden by default
+- `typeModel`: Model format (glb, obj, etc.)
 
-**Iluminación por Módulo:**
-- `enabled`: Activar luz individual
-- `intensity`: Intensidad lumínica (0-200)
-- `type`: Tipo de luz (point, spot, directional)
-- `color`: Color en formato hexadecimal
-- `position`: Posición relativa al módulo
+**Module Lighting:**
+- `enabled`: Activate individual light
+- `intensity`: Light intensity (0-200)
+- `type`: Light type (point, spot, directional)
+- `color`: Color in hexadecimal format
+- `position`: Position relative to module
 
-#### Iluminación Global
+#### Global Lighting
 
 ```json
 "lighting": {
@@ -298,10 +340,10 @@ Cada módulo en el array `modules` tiene la siguiente estructura:
 }
 ```
 
-- **Ambient Light**: Iluminación base que afecta toda la escena
-- **Directional Light**: Luz direccional (simula el sol)
+- **Ambient Light**: Base lighting affecting the entire scene
+- **Directional Light**: Directional light (simulates the sun)
 
-#### Entorno
+#### Environment
 
 ```json
 "environment": {
@@ -311,21 +353,21 @@ Cada módulo en el array `modules` tiene la siguiente estructura:
 }
 ```
 
-#### Ejemplo de Uso
+#### Usage Example
 
-Para agregar un nuevo módulo al catálogo:
+To add a new module to the catalog:
 
-1. **Agregar el modelo GLB** a `public/models/modules/`
-2. **Crear entrada en el JSON**:
+1. **Add the GLB model** to `public/models/modules/`
+2. **Create JSON entry**:
 
 ```json
 {
-  "id": "nuevo_modulo_v1",
-  "name": "Nuevo Módulo Experimental",
+  "id": "new_module_v1",
+  "name": "New Experimental Module",
   "code": "ARKHA_NewModule_L2_V1",
   "item": "028",
   "type": "Experimental Module",
-  "description": "Descripción del nuevo módulo",
+  "description": "New module description",
   "area": "12.5 m²",
   "volume": "35.0 m³",
   "position": [0, 0, 0],
@@ -346,93 +388,93 @@ Para agregar un nuevo módulo al catálogo:
 }
 ```
 
-3. **Reiniciar el servidor** para cargar los cambios
+3. **Restart the server** to load changes
 
-#### Validación del Archivo
+#### File Validation
 
-El archivo debe ser JSON válido. Puedes validarlo con:
+The file must be valid JSON. You can validate it with:
 
 ```bash
-# Usando Node.js
+# Using Node.js
 node -e "console.log(JSON.parse(require('fs').readFileSync('public/configs/arkha_modules.json')))"
 
-# O usando una herramienta online: https://jsonlint.com/
+# Or using an online tool: https://jsonlint.com/
 ```
 
-#### Ubicación de Archivos de Configuración
+#### Configuration File Location
 
 ```
 public/configs/
-├── arkha_modules.json      # Catálogo principal de módulos (27 módulos)
-├── modules_catalog.json    # Catálogo simplificado para UI
-├── mission_example.json    # Ejemplo de configuración de misión
-└── mission_test.json       # Configuración de prueba
+├── arkha_modules.json      # Main module catalog (27 modules)
+├── modules_catalog.json    # Simplified catalog for UI
+├── mission_example.json    # Mission configuration example
+└── mission_test.json       # Test configuration
 ```
 
 ---
 
-## 🐍 Microservicio Python (Module Manager)
+## 🐍 Python Microservice (Module Manager)
 
-### ¿Qué es?
+### What is it?
 
-Microservicio RESTful construido con **FastAPI** que genera layouts óptimos de módulos espaciales basándose en parámetros de misión (destino, duración, número de tripulantes, tipo de misión). Utiliza algoritmos de optimización en tres fases para crear configuraciones viables.
+RESTful microservice built with **FastAPI** that generates optimal space module layouts based on mission parameters (destination, duration, crew size, mission type). Uses three-phase optimization algorithms to create viable configurations.
 
-### Características Principales
+### Key Features
 
-- 🧮 **Algoritmo de Optimización en 3 Fases**:
-  - **Fase 1**: Cálculo de módulos necesarios según parámetros
-  - **Fase 2**: Optimización de distribución y conexiones
-  - **Fase 3**: Generación de layout 3D con posiciones y rotaciones
-- 🔌 **API RESTful**: Endpoints documentados con Swagger/OpenAPI
-- 🚀 **Alto Rendimiento**: Procesamiento rápido de layouts complejos
-- 🐳 **Dockerizado**: Fácil despliegue con Docker Compose
+- 🧮 **3-Phase Optimization Algorithm**:
+  - **Phase 1**: Calculate required modules based on parameters
+  - **Phase 2**: Optimize distribution and connections
+  - **Phase 3**: Generate 3D layout with positions and rotations
+- 🔌 **RESTful API**: Documented endpoints with Swagger/OpenAPI
+- 🚀 **High Performance**: Fast processing of complex layouts
+- 🐳 **Dockerized**: Easy deployment with Docker Compose
 
-### Stack Tecnológico
+### Tech Stack
 
 - **Framework**: FastAPI 0.109.0
-- **Lenguaje**: Python 3.9+
-- **Servidor**: Uvicorn
-- **Validación**: Pydantic 2.5
-- **Cálculos**: NumPy 1.26
+- **Language**: Python 3.9+
+- **Server**: Uvicorn
+- **Validation**: Pydantic 2.5
+- **Calculations**: NumPy 1.26
 
-### Instalación y Despliegue
+### Installation and Deployment
 
-#### Opción 1: Docker (Recomendado)
+#### Option 1: Docker (Recommended)
 
 ```bash
-# 1. Navegar al directorio del microservicio
+# 1. Navigate to microservice directory
 cd ms-module-manager
 
-# 2. Construir y ejecutar con Docker Compose
+# 2. Build and run with Docker Compose
 docker-compose up --build
 
-# El servicio estará disponible en http://localhost:8000
+# Service will be available at http://localhost:8000
 ```
 
-#### Opción 2: Instalación Local
+#### Option 2: Local Installation
 
 ```bash
-# 1. Navegar al directorio del microservicio
+# 1. Navigate to microservice directory
 cd ms-module-manager
 
-# 2. Crear entorno virtual
+# 2. Create virtual environment
 python3 -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# 3. Instalar dependencias
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Ejecutar el servidor
+# 4. Run the server
 python main.py
 ```
 
-El servicio estará disponible en `http://localhost:8000`
+Service will be available at `http://localhost:8000`
 
-### Endpoints de la API
+### API Endpoints
 
 #### `POST /api/v1/generate-layout`
 
-Genera un layout de módulos basado en parámetros de misión.
+Generates a module layout based on mission parameters.
 
 **Request Body:**
 ```json
@@ -459,34 +501,34 @@ Genera un layout de módulos basado en parámetros de misión.
 
 #### `GET /health`
 
-Health check del servicio.
+Service health check.
 
 #### `GET /docs`
 
-Documentación interactiva Swagger UI.
+Interactive Swagger UI documentation.
 
-### Estructura del Proyecto
+### Project Structure
 
 ```
 ms-module-manager/
-├── main.py           # Aplicación FastAPI principal
-├── Fase1.py          # Cálculo de módulos necesarios
-├── Fase2.py          # Optimización de distribución
-├── Fase3.py          # Generación de layout 3D
-├── requirements.txt  # Dependencias Python
-├── Dockerfile        # Configuración Docker
+├── main.py           # Main FastAPI application
+├── Fase1.py          # Calculate required modules
+├── Fase2.py          # Distribution optimization
+├── Fase3.py          # 3D layout generation
+├── requirements.txt  # Python dependencies
+├── Dockerfile        # Docker configuration
 ├── docker-compose.yml
 └── README.md
 ```
 
 ---
 
-## 🔗 Integración Frontend ↔ Microservicio
+## 🔗 Frontend ↔ Microservice Integration
 
-El frontend Next.js se comunica con el microservicio Python para generar layouts automáticos:
+The Next.js frontend communicates with the Python microservice to generate automatic layouts:
 
 ```typescript
-// En el frontend (MissionLayoutService.ts)
+// In frontend (MissionLayoutService.ts)
 const response = await axios.post('http://localhost:8000/api/v1/generate-layout', {
   destination: 'Moon',
   crew_size: 4,
@@ -495,45 +537,45 @@ const response = await axios.post('http://localhost:8000/api/v1/generate-layout'
 });
 
 const layout = response.data.layout;
-// Renderizar módulos en el visualizador 3D
+// Render modules in 3D viewer
 ```
 
 ---
 
-## 🚀 Despliegue Completo (Ambas Aplicaciones)
+## 🚀 Complete Deployment (Both Applications)
 
-### Desarrollo Local
+### Local Development
 
 ```bash
-# Terminal 1: Microservicio Python
+# Terminal 1: Python Microservice
 cd ms-module-manager
 docker-compose up
 
-# Terminal 2: Frontend Next.js
+# Terminal 2: Next.js Frontend
 cd Frontend-nextjs
 npm run dev
 ```
 
-### Producción
+### Production
 
-#### Frontend (Vercel - Recomendado)
+#### Frontend (Vercel - Recommended)
 
 ```bash
 cd Frontend-nextjs
 npm run build
 
-# Desplegar en Vercel
+# Deploy to Vercel
 vercel deploy --prod
 ```
 
-#### Microservicio (Docker en servidor)
+#### Microservice (Docker on server)
 
 ```bash
 cd ms-module-manager
 docker-compose up -d
 ```
 
-O usar servicios como:
+Or use services like:
 - **Railway**
 - **Render**
 - **AWS ECS**
@@ -541,42 +583,42 @@ O usar servicios como:
 
 ---
 
-## 📚 Documentación Adicional
+## 📚 Additional Documentation
 
-- **Base de Datos**: Ver `Frontend-nextjs/docs/database-schema.md` para esquema de Supabase
-- **Microservicio**: Ver `ms-module-manager/README.md` para detalles técnicos
-- **Integración**: Ver `Frontend-nextjs/docs/MICROSERVICE_INTEGRATION.md`
-
----
-
-## 🎨 Paleta de Colores
-
-- **Electric Blue**: `#0042A6` (Primario)
-- **Deep Blue**: `#07173F` (Secundario)
-- **Neon Yellow**: `#EAFE07` (Acento)
+- **Database**: See `Frontend-nextjs/docs/database-schema.md` for Supabase schema
+- **Microservice**: See `ms-module-manager/README.md` for technical details
+- **Integration**: See `Frontend-nextjs/docs/MICROSERVICE_INTEGRATION.md`
 
 ---
 
-## 👥 Contribución
+## 🎨 Color Palette
 
-Este proyecto fue desarrollado para el **NASA International Space Apps Challenge 2025**.
-
----
-
-## 📄 Licencia
-
-Este proyecto es de código abierto y está disponible bajo la licencia MIT.
+- **Electric Blue**: `#0042A6` (Primary)
+- **Deep Blue**: `#07173F` (Secondary)
+- **Neon Yellow**: `#EAFE07` (Accent)
 
 ---
 
-## 🆘 Soporte
+## 👥 Contribution
 
-Para problemas o preguntas:
-1. Revisar la documentación en `/docs`
-2. Verificar que Supabase esté configurado correctamente
-3. Asegurar que el microservicio esté ejecutándose en el puerto 8000
-4. Verificar las variables de entorno en `.env.local`
+This project was developed for the **NASA International Space Apps Challenge 2025**.
 
 ---
 
-**¡Feliz diseño de hábitats espaciales! 🌙🚀✨**
+## 📄 License
+
+This project is open source and available under the MIT license.
+
+---
+
+## 🆘 Support
+
+For issues or questions:
+1. Review documentation in `/docs`
+2. Verify Supabase is configured correctly
+3. Ensure microservice is running on port 8000
+4. Check environment variables in `.env.local`
+
+---
+
+**Happy space habitat designing! 🌙🚀✨**
